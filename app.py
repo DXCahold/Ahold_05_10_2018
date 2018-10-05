@@ -52,11 +52,11 @@ def webhook():
 									else:
 										outofstocks.append(row[request_data["unknown"]])
 			if len(availables)>0:
-				request_data["result"] = str(request_data["fulfillmentText"]).replace('*result','available').replace('*availables ',availables.replace("[","").replace("]","").replace("'","").replace('"',''))
+				request_data["result"] = str(request_data["fulfillmentText"]).replace('*result','available').replace('*availables ',str(availables).replace("[","").replace("]","").replace("'","").replace('"',''))
 			else:
 				request_data["result"] = str(request_data["fulfillmentText"]).replace('*result','not available').replace("you can find *availables  in stock"," sorry for inconvenience!")
 			if len(outofstocks)>0:
-				request_data["result"] = str(request_data["result"]).replace("*outofstocks",outofstocks.replace("[","").replace("]","").replace("'","").replace('"',''))
+				request_data["result"] = str(request_data["result"]).replace("*outofstocks",str(outofstocks).replace("[","").replace("]","").replace("'","").replace('"',''))
 			else:
 				request_data["result"] = str(request_data["result"]).replace(" *outofstocks currently unavailable","")
 		else:
