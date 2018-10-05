@@ -43,7 +43,7 @@ def webhook():
 					if request_data["unknown"] in headers:
 						for key in request_data['known']:
 							if request_data['known'][key] in row[key]:
-								if row["quantity"]>0:
+								if int(float(row["quantity"]))>0:
 									availables.append(row[request_data["unknown"]])
 								else:
 									outofstocks.append(row[request_data["unknown"]])
