@@ -44,8 +44,8 @@ def webhook():
 					if request_data["unknown"] in headers:
 						for key in request_data['known']:
 							if len(request_data['known'][key])>0:
-								if request_data['known'][key] in row[key]:
-									if "quantity" in headers:
+								if request_data['known'][key] == row[key]:
+									if "content" in headers:
 										if int(float(row["quantity"]))>0:
 											availables.append(row[request_data["unknown"]])
 										else:
