@@ -35,6 +35,7 @@ def webhook():
 		request_data["unknown"] = str(req['queryResult']['intent']['displayName'])
 		request_data["fulfillmentText"] = str(req['queryResult']['fulfillmentText'])
 		result = ""
+		print (request_data)
 		if request_data["unknown"] == "product":
 			availables,outofstocks = [],[]
 			for sheet in book.keys():
@@ -42,6 +43,8 @@ def webhook():
 					headers = row.keys()
 					if request_data["unknown"] in headers:
 						for key in request_data['known']:
+							print (request_data['known'][key])
+							print (row[key])
 							if request_data['known'][key] in row[key]:
 								if "quantity" in headers:
 									if int(float(row["quantity"]))>0:
