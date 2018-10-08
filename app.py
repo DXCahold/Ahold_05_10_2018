@@ -61,16 +61,17 @@ def webhook():
 			for sheet in book.keys():
 				for row in book[sheet]:
 					headers = row.keys()
-					for key in request_data['known']:
-						if len(str(request_data['known'][key]))>0:
-							if request_data['known']['product'] == row['product']:
-								if int(float(row["quantity"]))>0:
-									if int(float(row["quantity"]))>request_data['known']['quantity']:
-										request_data["result"] = str(request_data["fulfillmentText"])
+					if "content" in headers:
+						for key in request_data['known']:
+							if len(str(request_data['known'][key]))>0:
+								if request_data['known']['product'] == row['product']:
+									if int(float(row["quantity"]))>0:
+										if int(float(row["quantity"]))>request_data['known']['quantity']:
+											request_data["result"] = str(request_data["fulfillmentText"])
+										else:
+											request_data["result"] = str(request_data["fulfillmentText"]).replace("Sure! can i pick your address from phone number?","sorry!only "+str(int(float(row["quantity"])))+" products are in stock! would you like to proceed with available quantity?")
 									else:
-										request_data["result"] = str(request_data["fulfillmentText"]).replace("Sure! can i pick your address from phone number?","sorry!only "+str(int(float(row["quantity"])))+" products are in stock! would you like to proceed with available quantity?")
-								else:
-									request_data["result"] = str(request_data["fulfillmentText"]).replace("Sure! can i pick your address from phone number?","sorry! product is out of stock currently")
+										request_data["result"] = str(request_data["fulfillmentText"]).replace("Sure! can i pick your address from phone number?","sorry! product is out of stock currently")
 		else:
 			for sheet in book.keys():
 				for row in book[sheet]:
