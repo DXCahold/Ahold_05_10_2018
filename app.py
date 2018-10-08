@@ -77,6 +77,8 @@ def webhook():
 					headers = row.keys()
 					if request_data["unknown"] in headers:
 						for key in request_data['known']:
+							print(request_data['known'][key])
+							print(row[key])
 							if request_data['known'][key] == row[key]:
 								result = row[request_data["unknown"]]
 			request_data["result"] = request_data["fulfillmentText"].replace("*result",result)
