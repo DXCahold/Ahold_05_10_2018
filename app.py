@@ -63,6 +63,8 @@ def webhook():
 					headers = row.keys()
 					for key in request_data['known']:
 						if len(str(request_data['known'][key]))>0:
+							print(request_data['known'][key])
+							print(row[key])
 							if request_data['known'][key] == row[key]:
 								if int(float(row["quantity"]))>0:
 									if int(float(row["quantity"]))>request_data['known']['quantity']:
