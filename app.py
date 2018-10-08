@@ -29,7 +29,7 @@ app.logger.setLevel(logging.ERROR)
 def webhook():
 	if request.method == 'POST':
 		req = json.loads((request.data).decode("utf-8"))
-		print (req)
+		print( req["queryResult"]["allRequiredParamsPresent"])
 		request_data = {"known":{}, "unknown":"", "fulfillmentText":"", "result" : ""}
 		for key in req['queryResult']['parameters'].keys():
 			request_data["known"].update({key : req['queryResult']['parameters'][key]})
