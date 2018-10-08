@@ -67,6 +67,8 @@ def webhook():
 								if len(str(request_data['known'][key]))>0:
 									if request_data['known']['product'] == row['product']:
 										if int(float(row["quantity"]))>0:
+											print(int(float(row["quantity"])))
+											print(int(request_data['known']['quantity']))
 											if int(float(row["quantity"]))>int(request_data['known']['quantity']):
 												request_data["result"] = str(request_data["fulfillmentText"])
 											else:
