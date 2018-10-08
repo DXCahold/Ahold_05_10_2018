@@ -58,9 +58,7 @@ def webhook():
 			else:
 				request_data["result"] = str(request_data["result"]).replace(" *outofstocks currently unavailable","")
 		elif request_data["unknown"] == "order":
-			if "sure" not in request_data["fulfillmentText"]:
-				request_data["result"] = str(request_data["fulfillmentText"])
-			else:
+			if "sure" in request_data["fulfillmentText"]:
 				for sheet in book.keys():
 					for row in book[sheet]:
 						headers = row.keys()
@@ -75,6 +73,8 @@ def webhook():
 												request_data["result"] = str(request_data["fulfillmentText"]).replace("Sure! can i pick your address from phone number?","sorry!only "+str(int(float(row["quantity"])))+" products are in stock! would you like to proceed with available quantity?")
 										else:
 											request_data["result"] = str(request_data["fulfillmentText"]).replace("Sure! can i pick your address from phone number?","sorry! product is out of stock currently")
+			else:
+				request_data["result"] = str(request_data["fulfillmentText"])
 		else:
 			for sheet in book.keys():
 				for row in book[sheet]:
