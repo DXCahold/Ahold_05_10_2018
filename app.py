@@ -43,7 +43,7 @@ def webhook():
 					headers = row.keys()
 					if "content" in headers:
 						for key in request_data['known']:
-							if len(request_data['known'][key])>0:
+							if len(str(request_data['known'][key]))>0:
 								if request_data['known'][key] in row[key]:
 									if int(float(row["quantity"]))>0:
 										availables.append(row[request_data["unknown"]])
@@ -62,7 +62,7 @@ def webhook():
 				for row in book[sheet]:
 					headers = row.keys()
 					for key in request_data['known']:
-						if len(request_data['known'][key])>0:
+						if len(str(request_data['known'][key]))>0:
 							if request_data['known'][key] == row[key]:
 								if int(float(row["quantity"]))>0:
 									if int(float(row["quantity"]))>request_data['known']['quantity']:
