@@ -58,7 +58,7 @@ def webhook():
 			else:
 				request_data["result"] = str(request_data["result"]).replace(" *outofstocks currently unavailable","")
 		elif request_data["unknown"] == "order":
-			if "sure" in request_data["fulfillmentText"]:
+			if "Sure" in request_data["fulfillmentText"]:
 				for sheet in book.keys():
 					for row in book[sheet]:
 						headers = row.keys()
