@@ -67,7 +67,7 @@ def webhook():
 								if int(float(row["quantity"]))>0:
 									print(int(float(row["quantity"])))
 									print(int(request_data['known']['quantity']))
-									int(float(row["quantity"]))>int(request_data['known']['quantity']):
+									if int(float(row["quantity"]))>int(request_data['known']['quantity']):
 										request_data["result"] = str(request_data["fulfillmentText"])
 									else:
 										request_data["result"] = str(request_data["fulfillmentText"]).replace("Sure! can i pick your address from phone number?","sorry!only "+str(int(float(row["quantity"])))+" products are in stock! would you like to proceed with available quantity?")
